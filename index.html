@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1.0">
+		<title>My Home</title>
+		<link rel="stylesheet" href="css/swiper.css">
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+		<div>
+			<div class="exhibition">
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide" name="1">
+							<img class="slide c1" src="./img/item_bg.png">
+							<div class="mask1">
+								<div>
+									<p>
+										<a href="/briefblog/">我的随笔</a>
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="swiper-slide stop-swiping swiper-slide-active" name="2">
+							<img class="slide c1" src="./img/item_bg.png">
+							<div class="mask1">
+								<div>
+									<p>
+										<a href="/briefblog/">我的文章</a>
+									</p>
+								</div>
+							</div>
+						</div>
+						<div class="swiper-slide stop-swiping" name="3">
+							<img class="slide c1" src="./img/item_bg.png">
+							<div class="mask1">
+								<div>
+									<p><a href="/StudyNotes/">我的笔记</a></p>
+								</div>
+							</div>
+						</div>
+						<div class="swiper-slide stop-swiping" name="4">
+							<img class="slide c1" src="./img/item_bg.png">
+							<div class="mask1">
+								<div>
+									<p>我的感想</p>
+								</div>
+							</div>
+						</div>
+						<div class="swiper-slide stop-swiping" name="5">
+							<img class="slide c1" src="./img/item_bg.png">
+							<div class="mask1">
+								<div>
+									<p>待定。。</p>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="swiper-pagination"></div>
+				</div>
+				<div class="swiper-button-next"></div>
+				<div class="swiper-button-prev"></div>
+			</div>
+		</div>
+	</body>
+
+	<script src="js/jquery-3.1.1.min.js"></script>
+	<script src="js/swiper.js"></script>
+	<script>
+		$(function() {
+			var swiper = new Swiper('.swiper-container', {
+				pagination: '.swiper-pagination',
+				slidesPerView: 3,
+				centeredSlides: true,
+				paginationClickable: true,
+				slideToClickedSlide: true,
+				spaceBetween: 60,
+				noSwipingClass: 'stop-swiping',
+				navigation: {
+					nextEl: '.swiper-button-next',
+					prevEl: '.swiper-button-prev',
+				},
+			});
+			var currentSlide = 1; //当前页面
+			var oldSlide = 1; //上一次的页面
+			var slide = document.getElementsByClassName('swiper-slide');
+			slide[1].style.opacity = '0.5';
+			slide[1].style.filter = 'brightness(0.5)';
+			$('.swiper-slide').click(function() {
+				currentSlide = $(this).attr('name');
+				if (currentSlide > oldSlide) {
+					swiper.slideNext();
+				}
+				if (currentSlide < oldSlide) {
+					swiper.slidePrev();
+				}
+				for (var i = 0; i < slide.length; i++) {
+					slide[i].style.opacity = '1';
+					slide[i].style.filter = 'brightness(1)';
+				};
+				if (currentSlide == 1) {
+					slide[parseInt(currentSlide)].style.opacity = '0.5';
+					slide[parseInt(currentSlide)].style.filter = 'brightness(0.5)';
+				} else if (currentSlide == slide.length) {
+					slide[parseInt(currentSlide) - 2].style.opacity = '0.5';
+					slide[parseInt(currentSlide) - 2].style.filter = 'brightness(0.5)';
+				} else if (currentSlide > 1 && currentSlide < slide.length) {
+					slide[parseInt(currentSlide) - 2].style.opacity = '0.5';
+					slide[parseInt(currentSlide) - 2].style.filter = 'brightness(0.5)';
+					slide[parseInt(currentSlide)].style.opacity = '0.5';
+					slide[parseInt(currentSlide)].style.filter = 'brightness(0.5)';
+				}
+				oldSlide = currentSlide;
+			});
+			$('.swiper-button-next').click(function() {
+				for (var i = 0; i < slide.length; i++) {
+					slide[i].style.opacity = '1';
+					slide[i].style.filter = 'brightness(1)';
+				};
+				currentSlide++;
+				if (currentSlide == 1) {
+					slide[parseInt(currentSlide)].style.opacity = '0.5';
+					slide[parseInt(currentSlide)].style.filter = 'brightness(0.5)';
+				} else if (currentSlide == slide.length) {
+					slide[parseInt(currentSlide) - 2].style.opacity = '0.5';
+					slide[parseInt(currentSlide) - 2].style.filter = 'brightness(0.5)';
+				} else if (currentSlide > 1 && currentSlide < slide.length) {
+					slide[parseInt(currentSlide) - 2].style.opacity = '0.5';
+					slide[parseInt(currentSlide) - 2].style.filter = 'brightness(0.5)';
+					slide[parseInt(currentSlide)].style.opacity = '0.5';
+					slide[parseInt(currentSlide)].style.filter = 'brightness(0.5)';
+				}
+				oldSlide = currentSlide;
+			})
+			$('.swiper-button-prev').click(function() {
+				for (var i = 0; i < slide.length; i++) {
+					slide[i].style.opacity = '1';
+					slide[i].style.filter = 'brightness(1)';
+				};
+				currentSlide--;
+				if (currentSlide == 1) {
+					slide[parseInt(currentSlide)].style.opacity = '0.5';
+					slide[parseInt(currentSlide)].style.filter = 'brightness(0.5)';
+				} else if (currentSlide == slide.length) {
+					slide[parseInt(currentSlide) - 2].style.opacity = '0.5';
+					slide[parseInt(currentSlide) - 2].style.filter = 'brightness(0.5)';
+				} else if (currentSlide > 1 && currentSlide < slide.length) {
+					slide[parseInt(currentSlide) - 2].style.opacity = '0.5';
+					slide[parseInt(currentSlide) - 2].style.filter = 'brightness(0.5)';
+					slide[parseInt(currentSlide)].style.opacity = '0.5';
+					slide[parseInt(currentSlide)].style.filter = 'brightness(0.5)';
+				}
+				oldSlide = currentSlide;
+
+			})
+		})
+	</script>
+
+</html>
